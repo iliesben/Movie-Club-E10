@@ -24,7 +24,7 @@ export const MovieByCategoryListScreen = (props) => {
 
   return (
     <View>
-      <MovieList data={MovieBycategory} />
+      <MovieList data={MovieBycategory} navigation={navigation}/>
     </View>
   )
 }

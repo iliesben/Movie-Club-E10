@@ -3,11 +3,18 @@ import { View, StyleSheet, Text, Image } from 'react-native';
 
 export const FilmItem = (props) => {
 
-  const { data } = props
+  const { data, navigation } = props
   const year = data.release_date.match(/\d{4}/)
 
+  const navigateDetail = (id) => {
+    navigation.navigate('Details', {movieId : id})
+  }
+
   return (
-    <View style={styles.listontainer}>
+    <View 
+      style={styles.listontainer} 
+      onPress={() => { navigateDetail() }}
+    >
       <View>
         <Image style={styles.listItemMovieImage} source={{ uri: `https://image.tmdb.org/t/p/original${data.poster_path}` }} />
       </View>

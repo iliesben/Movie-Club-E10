@@ -24,6 +24,17 @@ export const getMoviebyCategory = (genre) => {
   )
 }
 
+export const getMovieDetail = (id) => {
+  return getData(
+    getApiUrl(
+      `/movie/${id}`,
+      {
+          language: 'fr-FR'
+      }
+    )
+  )
+}
+
 // export const getCategory = () => {
 //   return fetch(getApiUrl(
 //     '/genre/movie/list',
