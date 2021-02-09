@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react'
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { HomeLogo } from '../components/HomeLogo'
 import { FilmSearch } from '../components/filmSearch'
 import { MovieList } from '../components/MovieList'
@@ -9,7 +9,23 @@ export const MovieByCategoryListScreen = (props) => {
 
   const { route, navigation } = props;
   const { category, categoryId } = route.params
-  const [MovieBycategory, setMovieBycategory] = useState([])
+
+  const [movieBycategory, setMovieBycategory] = useState([])
+
+  const [isLoading, setIsLoading] = useState(false)
+  const [totalPages, setTotalPages] = useState(0)
+  const [page, setPage] = useState(0)
+
+  const loadFilmsByCategory = () => {
+    setIsLoading(true)
+    getMoviebyCategory(categoryId, (page + 1))
+      .then(data => {
+        setPage(data.page);
+        setTotalPages(data.total_pages);
+        setMovieBycategory([...movieBycategory, ...data.results])
+        setIsLoading(false)
+      })
+  }
 
 
   useLayoutEffect(() => {
@@ -18,13 +34,16 @@ export const MovieByCategoryListScreen = (props) => {
     })
   })
 
-  useEffect(() => {
-    getMoviebyCategory(categoryId).then(data => setMovieBycategory(data.results))
-  }, [])
+  useEffect(() => loadFilmsByCategory(), [])
 
   return (
     <View>
-      <MovieList data={MovieBycategory} />
+      <MovieList data={movieBycategory} loadMovies={loadFilmsByCategory} totalPages={totalPages} page={page} />
+      {isLoading &&
+        <View style={styles.loading_container}>
+          <ActivityIndicator size='large' color={'#000'} />
+        </View>
+      }
     </View>
   )
 }
@@ -32,5 +51,8 @@ export const MovieByCategoryListScreen = (props) => {
 const styles = StyleSheet.create({
   main_container: {
     backgroundColor: '#f4f4f4'
+  },
+  loading_container: {
+    bottom: 100
   }
 })

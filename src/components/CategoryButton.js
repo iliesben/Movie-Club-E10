@@ -6,11 +6,9 @@ export const CategoryButton = (props) => {
   const { content, navigation } = props
 
   return (
-    <View>
-      <TouchableOpacity style={styles.TouchableOpacityContainer}>
-        <Text onPress={() => { navigation() }} style={styles.text}>{content}</Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity onPress={() => { navigation() }} style={styles.TouchableOpacityContainer}>
+      <Text style={styles.text}>{content}</Text>
+    </TouchableOpacity>
   )
 }
 const styles = StyleSheet.create({

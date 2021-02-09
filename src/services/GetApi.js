@@ -12,13 +12,27 @@ export const getCategory = () => {
   )
 }
 
-export const getMoviebyCategory = (genre) => {
+export const getMoviebyCategory = (genre, page) => {
   return getData(
     getApiUrl(
       `/discover/movie`,
       {
         with_genres: genre,
         language: 'fr-FR',
+        page: page
+      }
+    )
+  )
+}
+
+export const searchMovie = (searchText, page) => {
+  return getData(
+    getApiUrl(
+      `/search/movie`,
+      {
+        query: searchText,
+        language: 'fr-FR',
+        page: page
       }
     )
   )

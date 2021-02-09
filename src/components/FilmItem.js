@@ -13,10 +13,10 @@ export const FilmItem = (props) => {
       </View>
       <View style={styles.listItemTextContainer}>
         <Text style={styles.listItemTitle}>{data.title}</Text>
-        <Text style={styles.listItemInfo}>{year.toString() || data.release_date}</Text>
+        <Text style={styles.listItemInfo}>{year !== null && year.toString() || data.release_date}</Text>
         {/* <Text style={styles.listItemInfo}>{movie_director}</Text> */}
       </View>
-      <View>
+      <View style={styles.listItemVoteContainer}>
         <Text style={styles.listItemVoteAverage}>{data.vote_average}</Text>
       </View>
     </View>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     shadowColor: 'red',
     shadowOffset: {
       width: 0,
-      height: 6,
+      height: 4,
     },
     shadowOpacity: 0.90,
     shadowRadius: 2.5,
@@ -46,25 +46,27 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   listItemTextContainer: {
-    width: 225,
-    backgroundColor: 'red',
+    width: 200,
     justifyContent: 'space-around',
     flexDirection: 'column'
   },
   listItemTitle: {
     fontWeight: 'bold',
-    fontSize: 22,
+    fontSize: 20,
     color: '#B5A90F'
   },
   listItemInfo: {
     fontSize: 16,
     color: '#B5A90F'
   },
-  listItemVoteAverage: {
-    flex: 1,
-    backgroundColor: 'red',
+  listItemVoteContainer: {
+    marginRight: 20,
+    alignContent: 'center',
     justifyContent: 'center',
+  },
+  listItemVoteAverage: {
+    color: '#B00020',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 22
   },
 });
