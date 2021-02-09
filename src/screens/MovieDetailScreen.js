@@ -16,15 +16,33 @@ export const MovieDetailScreen = (props) => {
   })
 
   return (
-    <View>
-      {/* <View style={styles.container}>
+    <View style={{flex:1, backgroundColor:'red'}}>
+      <View style={{flex:1, backgroundColor:'blue'}}>
         <Image
-          style={styles.imageStyle}
-          // source={{ uri: `https://image.tmdb.org/t/p/original${data.backdrop_path}` }}
+          style={styles.movieBackdropImage}
+          source={{ uri: `https://image.tmdb.org/t/p/original${movieData.backdrop_path}` }}
         />
       </View>
-       */}
-      <Text>Canan c'est la meilleure</Text>
+      <View>
+        <View>
+          <Image 
+            style={styles.movieBackdropImage} 
+            source={{ uri: `https://image.tmdb.org/t/p/original${movieData.poster_path}` }} 
+          />
+        </View>
+        <View>
+          <Text>{movieData.title}</Text>
+          <Text>{movieData.title}</Text>
+          <Text>{movieData.title}</Text>
+        </View>
+      </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  movieBackdropImage : {
+    width : 200,
+    height : 200,
+  }
+})
