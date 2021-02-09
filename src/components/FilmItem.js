@@ -7,13 +7,13 @@ export const FilmItem = (props) => {
   const { data, navigation } = props
   const year = data.release_date.match(/\d{4}/)
 
-  const navigateDetail = (data) => {
-    navigation.navigate('Details', { movieData: data })
+  const navigateDetail = (id, title) => {
+    navigation.navigate('Details', { movieId : id, movieTitle : title })
   }
 
   return (
     <TouchableOpacity onPress={() => {
-      navigateDetail(data)
+      navigateDetail(data.id, data.title)
       console.log('clicked');
     }}>
       <View style={styles.listontainer}>

@@ -15,6 +15,7 @@ const getQueryString = (queryParams) => {
   return ''
 }
 
+
 const getUrl = (path, queryParams) => `${path}${getQueryString(queryParams)}`
 
 export const getApiUrl = (path, queryParams = {}) => getUrl(`${API_URL}${path}`, { ...queryParams, api_key: API_KEY })

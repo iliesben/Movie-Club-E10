@@ -35,6 +35,8 @@ export const getMovieDetail = (id) => {
   )
 }
 
+
+
 // export const getCategory = () => {
 //   return fetch(getApiUrl(
 //     '/genre/movie/list',
