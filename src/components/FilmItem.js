@@ -1,32 +1,35 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const FilmItem = (props) => {
 
   const { data, navigation } = props
   const year = data.release_date.match(/\d{4}/)
 
-  const navigateDetail = (id) => {
-    navigation.navigate('Details', {movieId : id})
+  const navigateDetail = (data) => {
+    navigation.navigate('Details', { movieData: data })
   }
 
   return (
-    <View 
-      style={styles.listontainer} 
-      onPress={() => { navigateDetail() }}
-    >
-      <View>
-        <Image style={styles.listItemMovieImage} source={{ uri: `https://image.tmdb.org/t/p/original${data.poster_path}` }} />
+    <TouchableOpacity onPress={() => {
+      navigateDetail(data)
+      console.log('clicked');
+    }}>
+      <View style={styles.listontainer}>
+        <View>
+          <Image style={styles.listItemMovieImage} source={{ uri: `https://image.tmdb.org/t/p/original${data.poster_path}` }} />
+        </View>
+        <View style={styles.listItemTextContainer}>
+          <Text style={styles.listItemTitle}>{data.title}</Text>
+          <Text style={styles.listItemInfo}>{year.toString() || data.release_date}</Text>
+          {/* <Text style={styles.listItemInfo}>{movie_director}</Text> */}
+        </View>
+        <View>
+          <Text style={styles.listItemVoteAverage}>{data.vote_average}</Text>
+        </View>
       </View>
-      <View style={styles.listItemTextContainer}>
-        <Text style={styles.listItemTitle}>{data.title}</Text>
-        <Text style={styles.listItemInfo}>{year.toString() || data.release_date}</Text>
-        {/* <Text style={styles.listItemInfo}>{movie_director}</Text> */}
-      </View>
-      <View>
-        <Text style={styles.listItemVoteAverage}>{data.vote_average}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   )
 };
 
@@ -38,6 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: 20,
     marginVertical: 5,
+    backgroundColor: 'orange',
     shadowColor: 'red',
     shadowOffset: {
       width: 0,
@@ -54,7 +58,6 @@ const styles = StyleSheet.create({
   },
   listItemTextContainer: {
     width: 225,
-    backgroundColor: 'red',
     justifyContent: 'space-around',
     flexDirection: 'column'
   },

@@ -3,12 +3,20 @@ import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { FilmItem } from './FilmItem'
 
 export const MovieList = (props) => {
+
+  const { data, totalPages, page, loadMovies, navigation } = props
+
   return (
     <View>
       <FlatList
-        data={props.data}
-        renderItem={({ item }) => <FilmItem data={item} navigation={props.navigation}/>}
+        style={{ marginTop: 10 }}
+        data={data}
+        renderItem={({ item }) => <FilmItem data={item} navigation={navigation} />}
         keyExtractor={item => item.id.toString()}
+        onEndReachedThreshold={0.5}
+        onEndReached={() => {
+          if (page < totalPages) loadMovies()
+        }}
       />
     </View>
   )
