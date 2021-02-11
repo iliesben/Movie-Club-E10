@@ -31,9 +31,9 @@ export const MovieDetailScreen = (props) => {
       </View>
       <View style={styles.smallInfoContainer}>
         <View style={styles.smallInfoImageContainer}>
-          <Image 
-            style={styles.smallInfoImage} 
-            source={{ uri: `https://image.tmdb.org/t/p/original${movie.poster_path}` }} 
+          <Image
+            style={styles.smallInfoImage}
+            source={{ uri: `https://image.tmdb.org/t/p/original${movie.poster_path}` }}
           />
         </View>
         <View style={styles.smallInfoTextContainer}>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     marginBottom: 7,
     fontSize: 18,
     fontWeight: "bold",
-    color: props.isValid ? '#202020' : 'blue',
+    // color: props.isValid ? '#202020' : 'blue',
   },
   synopsisText: {
     fontSize: 16,
