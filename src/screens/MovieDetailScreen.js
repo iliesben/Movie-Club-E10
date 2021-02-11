@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useState, useEffect } from 'react'
 import { View, StyleSheet, Text, Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { getMovieDetail } from '../services/GetApi';
@@ -9,21 +9,27 @@ import { PlayIcon } from '../components/svg/PlayIcon';
 export const MovieDetailScreen = (props) => {
 
   const { route, navigation } = props;
-  const { movieData } = route.params
-  console.log('data:', movieData)
+  const { movieId, movieTitle } = route.params
+  const [movie, setMovie] = useState([])
+  // let genre
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: route && route.params && route.params.movieData.title ? `${movieData.title}` : 'movieId'
+      title: route && route.params && route.params.movieTitle ? `${movieTitle}` : 'movieId'
     })
   })
+
+  useEffect(() => {
+    getMovieDetail(movieId).then(data => setMovie(data))
+    // genre = movie.genres.map(genre => genre.name).join(' ')
+  }, [])
 
   return (
     <View style={styles.mainContainer}>
       <View style={styles.movieBackdropContainer}>
         <Image
-          style={styles.movieBackdropImage}
-          source={{ uri: `https://image.tmdb.org/t/p/original${movieData.backdrop_path}` }}
+          style={styles.BackdropImage}
+          source={{ uri: `https://image.tmdb.org/t/p/original${movie.backdrop_path}` }}
         />
       </View>
       <View style ={styles.middleContainer}> 

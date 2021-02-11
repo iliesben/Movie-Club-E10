@@ -1,8 +1,9 @@
 import React from 'react'
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { FilmItem } from './FilmItem'
 
 export const MovieList = (props) => {
+
 
   const { data, totalPages, page, loadMovies, navigation } = props
 
@@ -15,7 +16,7 @@ export const MovieList = (props) => {
         keyExtractor={item => item.id.toString()}
         onEndReachedThreshold={0.5}
         onEndReached={() => {
-          if (page < totalPages) loadMovies()
+          if (page < totalPages) loadMovies(false)
         }}
       />
     </View>

@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, ScrollViewComponent, StyleSheet, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { CategoryButton } from '../components/CategoryButton'
 import { HomeLogo } from '../components/HomeLogo'
 import { getCategory } from '../services/GetApi'
+import { COLORS } from "../styles/style";
 
 export const HomeScreen = (props) => {
 
-  const { navigation, route } = props
+  const { navigation } = props
   const [category, setCategory] = useState([])
 
-  useEffect(() => {
-    getCategory().then(data => setCategory(data))
-  }, [])
+  useEffect(() => { getCategory().then(data => setCategory(data)) }, [])
 
-  const listNavigate = (_category, _id) => {
-    props.navigation.navigate('List', { category: _category, categoryId: _id })
-  }
+  const listNavigate = (_category, _id) => navigation.navigate('List', { category: _category, categoryId: _id })
 
   return (
     <SafeAreaView style={styles.container}>
@@ -37,9 +33,9 @@ export const HomeScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: COLORS.backgroundColor
   },
   logoContainer: {
     flex: .5,
@@ -52,6 +48,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: "center",
-    flexWrap: 'wrap',
+    flexWrap: 'wrap'
   }
 })

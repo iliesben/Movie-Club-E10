@@ -1,45 +1,66 @@
 import React, { useState } from 'react';
-import { Button, View, TextInput, StyleSheet, Image } from "react-native";
-import { SearchIcon } from '../components/svg/SearchIcon';
+import { TouchableOpacity, View, TextInput, StyleSheet, Text } from "react-native";
+import { SearchIcon } from './svg/SearchIcon';
+import { COLORS, FONTS, SIZES, BUTTONSEARCH, ITEMCONTAINER, SHADOW } from "../styles/style";
 
 export const FilmSearch = (props) => {
+
+  const { handleSearch, handleClickButton } = props
   const [isDisabled, setIsDisabled] = useState(true);
+
   const onChangeText = (text) => {
     setIsDisabled(text === '')
-    props.handleSearch(text);
+    handleSearch(text);
   }
 
   return (
-    <View style={styles.input_box}>
-      <View style={styles.input_container}>
-        <SearchIcon fill="#b5a90f" />
+    <View style={styles.inputBox}>
+      <View style={styles.inputContainer}>
+        <SearchIcon style={{ marginLeft: 15 }} fill="#b00020" />
         <TextInput
-          style={styles.input_text}
+          style={[styles.inputText, FONTS.textInput]}
           placeholder='Titre du film'
-        // onChangeText={onChangeText}
+          onChangeText={onChangeText}
         />
       </View>
-      <Button styles={styles.button_container} disabled={isDisabled} title='Rechercher' onPress={() => props.handleClickButton()} />
+      <View style={styles.TouchableOpacityContainerr}>
+        <TouchableOpacity style={[styles.TouchableOpacityContainer, BUTTONSEARCH]} disabled={isDisabled} onPress={() => handleClickButton()}>
+          <Text style={[styles.submitText, FONTS.buttonText]}> RECHERCHER </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  input_box: {
-    backgroundColor: '#b00020',
-    padding: 20,
-    borderRadius: 20
+  inputBox: {
+    width: '100%',
+    backgroundColor: COLORS.primary,
+    paddingVertical: SIZES.paddingVertical,
+    paddingHorizontal: SIZES.paddingHorizontal,
+    borderRadius: SIZES.radius
   },
-  input_container: {
+  inputContainer: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderRadius: 10
+    alignItems: 'center',
+    backgroundColor: COLORS.white,
+    marginBottom: SIZES.marginBottom
   },
-  input_text: {
-    paddingLeft: 20,
-    height: 40
+  inputText: {
+    paddingLeft: SIZES.paddingLeft,
+    height: SIZES.height,
+    color: COLORS.primary
   },
-  // backgroundColor: '#b5a90f',
-  // alignItems: 'flex-end',
-  // borderRadius: 10
+  TouchableOpacityContainerr: {
+    alignItems: 'flex-end',
+  },
+  TouchableOpacityContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.secondary,
+    borderRadius: SIZES.borderRadius
+  },
+  submitText: {
+    color: COLORS.white
+  }
 })

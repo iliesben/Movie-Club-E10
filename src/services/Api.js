@@ -10,10 +10,9 @@ const getQueryString = (queryParams) => {
       .join('&')
   }
 
-  if (queryString) return `?${queryString}`
-
-  return ''
+  return (queryString) ? `?${queryString}` : ''
 }
+
 
 const getUrl = (path, queryParams) => `${path}${getQueryString(queryParams)}`
 
