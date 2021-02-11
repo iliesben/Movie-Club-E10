@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity } from 'react-native';
 import { HomeScreen } from '../screens/HomeScreen'
 import { MovieByCategoryListScreen } from "../screens/MovieByCategoryListScreen";
+import { MovieDetailScreen } from '../screens/MovieDetailScreen';
 import { COLORS, FONTS } from '../styles/style';
 import { BackIcon } from '../components/svg/BackIcon';
 
@@ -13,6 +14,7 @@ export const HomeNavigator = (props) => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Accueil" component={HomeScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Details" component={MovieDetailScreen} />
       <Stack.Screen
         name="List"
         component={MovieByCategoryListScreen}

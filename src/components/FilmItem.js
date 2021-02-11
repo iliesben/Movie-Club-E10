@@ -4,11 +4,18 @@ import { COLORS, FONTS, SIZES, POSTER, ITEMCONTAINER, SHADOW } from "../styles/s
 
 export const FilmItem = (props) => {
 
-  const { data } = props
+  const { data, navigation } = props
   const year = year !== null ? data.release_date.match(/\d{4}/) : ''
+  
+  const navigateDetail = (id, title) => {
+    navigation.navigate('Details', { movieId : id, movieTitle : title })
+  }
 
   return (
-    <TouchableOpacity style={[styles.listItemContainer, SHADOW]}>
+    <TouchableOpacity onPress={() => {
+        navigateDetail(data.id, data.title)
+      }}
+      style={[styles.listItemContainer, SHADOW]}>
       <View>
         <Image style={POSTER} source={{ uri: `https://image.tmdb.org/t/p/original${data.poster_path}` }} />
       </View>
