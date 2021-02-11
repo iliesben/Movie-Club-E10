@@ -1,6 +1,9 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react'
 import { View, StyleSheet, Text, Image } from 'react-native';
-import { getMovieDetail } from '../services/GetApi'
+import { ScrollView } from 'react-native-gesture-handler';
+import { getMovieDetail } from '../services/GetApi';
+import { PlayIcon } from '../components/svg/PlayIcon';
+
 
 
 export const MovieDetailScreen = (props) => {
@@ -22,91 +25,135 @@ export const MovieDetailScreen = (props) => {
   }, [])
 
   return (
-    <View>
-      <View style={styles.backdropImageContainer}>
+    <View style={styles.mainContainer}>
+      <View style={styles.movieBackdropContainer}>
         <Image
           style={styles.BackdropImage}
           source={{ uri: `https://image.tmdb.org/t/p/original${movie.backdrop_path}` }}
         />
       </View>
-      <View style={styles.smallInfoContainer}>
-        <View style={styles.smallInfoImageContainer}>
+      <View style ={styles.middleContainer}> 
+        <View style={styles.moviePosterBackgound}>
           <Image 
-            style={styles.smallInfoImage} 
-            source={{ uri: `https://image.tmdb.org/t/p/original${movie.poster_path}` }} 
+            style={styles.moviePosterImage} 
+            source={{ uri: `https://image.tmdb.org/t/p/original${movieData.poster_path}` }} 
           />
         </View>
-        <View style={styles.smallInfoTextContainer}>
-          <Text style={styles.smallInfoTitle}>{movie.title}</Text>
-          <Text style={styles.smallInfoText}>Genre</Text> {/* <Text style={styles.smallInfoText}>{genre}</Text> */}
-          <Text style={styles.smallInfoText}>{movie.runtime} minutes</Text>
+        <View style={styles.movieCaption}>
+          <Text style={styles.movieTitle}>{movieData.title}</Text>
+          <Text style={styles.movieSubtitle}>{movieData.title}</Text>
+          <Text style={styles.movieSubtitle}>{movieData.title}</Text>
         </View>
-        <View style={styles.synopsisContainer}>
-          <Text style={styles.synopsisTitle}>Synopsis</Text>
-          <Text style={styles.synopsisText}>{movie.overview}</Text>
+        <View style={styles.playIcon}>
         </View>
       </View>
+      <ScrollView style={styles.synopsisScrollableContainer}>
+        <Text style={styles.synopsisTitle}>Synopsis</Text>
+        <Text style={styles.synopsisText}>{movieData.overview}</Text>
+      </ScrollView>     
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  backdropImageContainer: {
-    alignItems: "center",
-    height: 400,
+  mainContainer: {
+    flex : 1,
+    flexDirection: 'column',
+    alignItems : 'center',
+    justifyContent: 'flex-start',
+    backgroundColor : '#f4f4f4',
   },
-  BackdropImage: {
-    width: "250%",
-    height: 1440 / 3.4,
+  movieBackdropContainer: {
+    flex : 1,
+    height : '45%',
+    alignItems: 'center',
   },
-  smallInfoContainer: {
-    paddingHorizontal: 10,
-    marginTop: -30,
-    marginBottom: 25,
+  movieBackdropImage : {
+    flex : 1,
+    width : 400,
+    height : 300,
+    resizeMode: 'cover',
+  },
+  middleContainer : {
+    zIndex : 100,
+    position : 'absolute',
+    top : '40%',
     flexDirection: 'row',
-    alignItems: 'flex-end',
+    alignItems: 'center',
+    justifyContent : 'space-between',
+    flex : 1,
+    width : '90%',
+    height : '20%',
   },
-  smallInfoImageContainer: {
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-    shadowColor: 'black',
+  moviePosterBackgound : {
+    backgroundColor : 'white',
+    borderRadius : 12,
+    width : '22%',
+    height : '100%',
+    alignItems: 'center',
+    justifyContent : 'center',
   },
-  smallInfoImage: {
-    width: 48 * 2.5,
-    height: 72 * 2.5,
-    resizeMode: 'contain',
-    borderColor: "white",
-    borderRadius: 20,
-    borderWidth: 5,
+  moviePosterImage : {
+    width : '80%',
+    height : '85%',
+    resizeMode: 'cover',
   },
-  smallInfoTextContainer: {
-    padding: 10,
-    justifyContent: 'space-around',
+  movieCaption : {
+    backgroundColor : 'white',
+    width : '55%',
+    height : '65%',
+    alignItems: 'center',
+    justifyContent : 'center',
+    borderRadius : 12,
   },
-  smallInfoTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#202020'
+  movieTitle : {
+    color : '#b5a90f',
+    fontWeight : '500',
+    textAlign : 'left',
   },
-  smallInfoText: {
-    marginTop: 5,
-    fontSize: 18,
-    color: '#202020',
+  movieTitle : {
+    color : '#b5a90f',
+    fontSize : 14,
+    fontWeight : '500',
+    textAlign : 'left',
+    width : '85%',
+
   },
-  synopsisContainer: {
-    position: 'relative',
+  movieSubtitle : {
+    color : '#b5a90f',
+    fontSize : 10,
+    textAlign : 'left',
+    width : '85%',
+
   },
-  synopsisTitle: {
-    marginBottom: 7,
-    fontSize: 18,
-    fontWeight: "bold",
-    color: props.isValid ? '#202020' : 'blue',
+  playIcon : {  
+    width : 40,
+    height : 40,
+    backgroundColor : '#b00020',
+    borderRadius : 500,
+    borderColor : '#b5a90f',
+    borderStyle : 'solid',
+    borderWidth : 4,
   },
-  synopsisText: {
-    fontSize: 16,
-    color: '#202020',
-    letterSpacing: 0.25,
-    lineHeight: 25,
-    paddingBottom: 10,
-  }
+  synopsisScrollableContainer : {
+    flex : 1,
+    height : '55%',
+    width : '90%',
+    color : '#b5a90f',
+
+  },
+  movieSynopsis : {
+    width : 300,
+  },
+  synopsisTitle : {
+    marginTop : 70,
+    fontSize : 18,
+    fontWeight : '500',
+    color : '#b5a90f',
+  },
+  synopsisText : 
+  {
+    color : '#b5a90f',
+    marginTop : 40,
+  },
 })
