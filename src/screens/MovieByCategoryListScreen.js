@@ -1,7 +1,5 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react'
-import { SafeAreaView, StyleSheet, Text, View, ActivityIndicator } from 'react-native';
-import { HomeLogo } from '../components/HomeLogo'
-import { FilmSearch } from '../components/filmSearch'
+import { View, ActivityIndicator, Text } from 'react-native';
 import { MovieList } from '../components/MovieList'
 import { getMoviebyCategory } from '../services/GetApi'
 
@@ -34,25 +32,16 @@ export const MovieByCategoryListScreen = (props) => {
     })
   })
 
-  useEffect(() => loadFilmsByCategory(), [])
+  useEffect(() => { loadFilmsByCategory() }, [])
 
   return (
     <View>
       <MovieList data={movieBycategory} loadMovies={loadFilmsByCategory} totalPages={totalPages} page={page} />
       {isLoading &&
-        <View style={styles.loading_container}>
+        <View style={{ bottom: 100 }}>
           <ActivityIndicator size='large' color={'#000'} />
         </View>
       }
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  main_container: {
-    backgroundColor: '#f4f4f4'
-  },
-  loading_container: {
-    bottom: 100
-  }
-})

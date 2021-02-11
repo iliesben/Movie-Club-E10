@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, View, TextInput, StyleSheet, Image, Text } from "react-native";
-import { SearchIcon } from '../components/svg/SearchIcon';
+import { TouchableOpacity, View, TextInput, StyleSheet, Text } from "react-native";
+import { SearchIcon } from './svg/SearchIcon';
+import { COLORS, FONTS, SIZES, BUTTONSEARCH, ITEMCONTAINER, SHADOW } from "../styles/style";
 
 export const FilmSearch = (props) => {
 
@@ -17,14 +18,14 @@ export const FilmSearch = (props) => {
       <View style={styles.inputContainer}>
         <SearchIcon style={{ marginLeft: 15 }} fill="#b00020" />
         <TextInput
-          style={styles.inputText}
+          style={[styles.inputText, FONTS.textInput]}
           placeholder='Titre du film'
           onChangeText={onChangeText}
         />
       </View>
       <View style={styles.TouchableOpacityContainerr}>
-        <TouchableOpacity style={styles.TouchableOpacityContainer} disabled={isDisabled} onPress={() => handleClickButton()}>
-          <Text style={styles.submitText}> RECHERCHER </Text>
+        <TouchableOpacity style={[styles.TouchableOpacityContainer, BUTTONSEARCH]} disabled={isDisabled} onPress={() => handleClickButton()}>
+          <Text style={[styles.submitText, FONTS.buttonText]}> RECHERCHER </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -33,39 +34,33 @@ export const FilmSearch = (props) => {
 
 const styles = StyleSheet.create({
   inputBox: {
-    backgroundColor: '#b00020',
     width: '100%',
-    paddingVertical: 20,
-    paddingHorizontal: 30,
-    borderRadius: 20,
+    backgroundColor: COLORS.primary,
+    paddingVertical: SIZES.paddingVertical,
+    paddingHorizontal: SIZES.paddingHorizontal,
+    borderRadius: SIZES.radius
   },
   inputContainer: {
-    marginBottom: 25,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
+    marginBottom: SIZES.marginBottom
   },
   inputText: {
-    paddingLeft: 15,
-    height: 50,
-    color: '#b00020',
-    fontSize: 18,
-    fontWeight: 'bold',
+    paddingLeft: SIZES.paddingLeft,
+    height: SIZES.height,
+    color: COLORS.primary
   },
   TouchableOpacityContainerr: {
     alignItems: 'flex-end',
   },
   TouchableOpacityContainer: {
-    width: 160,
-    height: 50,
-    backgroundColor: '#b5a90f',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 5
+    backgroundColor: COLORS.secondary,
+    borderRadius: SIZES.borderRadius
   },
   submitText: {
-    color: '#ffffff',
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: COLORS.white
   }
 })

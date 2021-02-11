@@ -37,14 +37,3 @@ export const searchMovie = (searchText, page) => {
     )
   )
 }
-
-// export const getCategory = () => {
-//   return fetch(getApiUrl(
-//     '/genre/movie/list',
-//     {
-//       language: 'fr-FR',
-//     }
-//   )).then(
-//     resultat => resultat.json()
-//   )
-// }

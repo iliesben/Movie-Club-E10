@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { FilmItem } from './FilmItem'
 
 export const MovieList = (props) => {
 
   const { data, totalPages, page, loadMovies } = props
+
   return (
     <View>
       <FlatList
@@ -15,7 +16,8 @@ export const MovieList = (props) => {
         onEndReachedThreshold={0.5}
         onEndReached={() => {
           if (page < totalPages) loadMovies(false)
-        }}
+        }
+        }
       />
     </View>
   )

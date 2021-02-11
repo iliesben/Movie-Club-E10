@@ -1,11 +1,12 @@
 import React from 'react'
 import { StyleSheet, Image, View } from 'react-native';
+import { LOGO, COLORS, SIZES } from "../styles/style";
 
 export const HomeLogo = () => {
   return (
     <View style={styles.container}>
       <Image
-        style={styles.image}
+        style={LOGO}
         source={require('../../assets/logo.png')}
       />
     </View>
@@ -14,18 +15,13 @@ export const HomeLogo = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 220,
-    height: 220,
-    borderRadius: 100 / 0.5,
-    borderWidth: 6,
-    backgroundColor: "white",
-    borderColor: "red",
     justifyContent: "center",
     alignItems: "center",
-  },
-  image: {
-    width: 200,
-    height: 200,
+    width: LOGO.width * 1.2,
+    height: LOGO.width * 1.2,
+    borderRadius: SIZES.radius * 10,
+    borderWidth: SIZES.borderWidth,
+    borderColor: COLORS.primary,
   }
 })
 

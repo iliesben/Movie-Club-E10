@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, ActivityIndicator, View, Text } from "react-native";
+import React, { useState, useLayoutEffect } from "react";
+import { SafeAreaView, StyleSheet, ActivityIndicator, View, Text, Image } from "react-native";
 import { HomeLogo } from "../components/HomeLogo";
-import { FilmSearch } from '../components/filmSearch'
+import { FilmSearch } from '../components/FilmSearch'
 import { searchMovie } from '../services/GetApi'
 import { MovieList } from '../components/MovieList'
+import { COLORS, FONTS, SIZES, SADIMAGE } from "../styles/style";
 
-export const SearchScreen = () => {
+export const SearchScreen = (props) => {
+
+  const { navigation } = props
 
   const [movies, setMovies] = useState([])
   const [searchText, setSearchText] = useState('')
@@ -15,9 +18,21 @@ export const SearchScreen = () => {
   const [page, setPage] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
 
-  const handleSearchText = (text) => {
-    setSearchText(text)
-  }
+  // useEffect(() => {
+
+  //   return () => {
+
+  //   };
+  // }, [])
+
+  console.log('navigation:', navigation)
+  // useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     title: route && route.params && route.params.category ? `${category}` : 'Catégorie'
+  //   })
+  // })
+
+  const handleSearchText = (text) => setSearchText(text)
 
   const searchMovies = () => loadMovies(true)
 
@@ -33,29 +48,39 @@ export const SearchScreen = () => {
       })
   }
 
-
   const renderMovies = () => {
-    if (movies.length > 0) {
-      return <View style={styles.listContiner}>
-        <MovieList data={movies} loadMovies={() => loadMovies(false)} totalPages={totalPages} page={page} />
-        {isLoading &&
-          <View style={styles.loading_container}>
-            <ActivityIndicator size='large' color={'#000'} />
-          </View>
-        }
-      </View>
-    }
-
-    return <View style={styles.no_found_container}><Text style={styles.text_no_result}>Aucun film n'a été chargé.</Text></View>
+    return (
+      (movies.length > 0)
+        ?
+        <View style={styles.listContiner}>
+          <MovieList data={movies} loadMovies={() => loadMovies(false)} totalPages={totalPages} page={page} />
+          {isLoading &&
+            <View style={{ bottom: 100 }}>
+              <ActivityIndicator size='large' color={'#000'} />
+            </View>
+          }
+        </View>
+        :
+        <View style={styles.NoResultcontainer}>
+          <Image style={SADIMAGE} source={require('../../assets/bad.png')} />
+          <Text style={[styles.textNoResult, FONTS.h1]}>Aucune recherche effectuée.</Text>
+        </View>
+    )
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.logoContainer}>
+      {/* <View>
+
+      </View> */}
+      <View>
         <HomeLogo />
       </View>
       <View style={styles.filmSearchContainer}>
-        <FilmSearch handleSearch={handleSearchText} handleClickButton={() => searchMovies()} />
+        <FilmSearch handleSearch={handleSearchText} handleClickButton={() => {
+          setMovies([])
+          searchMovies()
+        }} />
       </View>
       {renderMovies()}
     </SafeAreaView>
@@ -65,32 +90,21 @@ export const SearchScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
-  },
-  logoContainer: {
-    flex: .5,
-    justifyContent: 'center',
+    backgroundColor: COLORS.backgroundColor
   },
   filmSearchContainer: {
-    flex: .4,
+    flex: 1,
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    marginTop: SIZES.marginTop
   },
-  listContiner: {
-    flex: 1
+  NoResultcontainer: {
+    flex: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  loading_container: {
-    bottom: 100
+  textNoResult: {
+    color: COLORS.secondary
   }
 })
-
-// const stylet = (props) => StyleSheet.create({
-//   container: {
-//     marginHorizontal: 220,
-//   },
-//   textInput: {
-//     borderWidth: 1,
-//     borderColor: props.isValid ? '#000' : '#FF0000'
-//   }
-// })
