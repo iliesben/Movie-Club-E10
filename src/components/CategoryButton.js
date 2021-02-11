@@ -1,39 +1,25 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { COLORS, FONTS, SIZES, BUTTON, SHADOW } from "../styles/style";
 
 export const CategoryButton = (props) => {
 
   const { content, navigation } = props
 
   return (
-    <View>
-      <TouchableOpacity style={styles.TouchableOpacityContainer}>
-        <Text onPress={() => { navigation() }} style={styles.text}>{content}</Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity onPress={() => { navigation() }} style={[styles.TouchableOpacityContainer, BUTTON, SHADOW]}>
+      <Text style={[styles.text, FONTS.h2]}>{content}</Text>
+    </TouchableOpacity>
   )
 }
 const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
-    color: '#B00020',
-    fontWeight: '600',
-    fontSize: 16,
+    color: COLORS.primary,
   },
   TouchableOpacityContainer: {
-    margin: 10,
-    width: 150,
-    height: 65,
     justifyContent: 'center',
-    backgroundColor: 'white',
-    shadowColor: "#B00020",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.75,
-    shadowRadius: 2.5,
-
-    elevation: 4,
+    margin: SIZES.margin,
+    backgroundColor: COLORS.white
   }
 })

@@ -1,9 +1,11 @@
 import React from 'react';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { View, StyleSheet } from 'react-native';
 import { HomeNavigator } from "./HomeNavigator";
 import { SearchScreen } from '../screens/SearchScreen';
 import { SearchIcon } from '../components/svg/SearchIcon';
 import { HomeIcon } from '../components/svg/HomeIcon';
+import { COLORS, SIZES } from "../styles/style";
 
 
 const Tab = createBottomTabNavigator();
@@ -11,32 +13,41 @@ const Tab = createBottomTabNavigator();
 export const MainNavigator = () => {
 
   const isFocude = (focused) => {
-    return focused ? '#B5A90F' : '#ffffff';
+    return focused ? COLORS.secondary : COLORS.white;
   }
 
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        // tabBarVisible: route.name === 'AccueilTab' ? true : false,
         tabBarIcon: ({ focused, color, size }) => {
-          if (route.name === 'AccueilTab') return <HomeIcon fill={isFocude(focused)} />
-          else if (route.name === 'Rechercher') return <SearchIcon fill={isFocude(focused)} />;
-        },
+          return (
+            <View style={styles({ focused: focused }).ViewCont}>
+              {route.name === 'AccueilTab' ? <HomeIcon fill={isFocude(focused)} /> : <SearchIcon fill={isFocude(focused)} />}
+            </View>
+          )
+        }
       })}
       tabBarOptions={{
         showLabel: false,
-        tabStyle: {
-          padding: 5,
-          borderTopWidth: 5,
-          borderTopColor: '#B5A90F'
-        },
         style: {
-          backgroundColor: '#B00020',
-          borderTopColor: "transparent",
-        },
+          backgroundColor: COLORS.primary,
+        }
       }}
     >
       <Tab.Screen name="AccueilTab" component={HomeNavigator} />
       <Tab.Screen name="Rechercher" component={SearchScreen} />
-    </Tab.Navigator>
+    </Tab.Navigator >
   )
 }
+
+const styles = (props) => StyleSheet.create({
+  ViewCont: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    borderTopWidth: SIZES.borderWidth,
+    borderTopColor: props.focused ? COLORS.secondary : COLORS.primary
+  }
+})
