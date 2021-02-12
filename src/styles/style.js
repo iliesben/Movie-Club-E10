@@ -1,3 +1,6 @@
+import React from 'react';
+import { Dimensions } from 'react-native';
+
 const COLORS = {
 
   primary: '#B00020',
@@ -55,10 +58,15 @@ const BUTTONTRAILER = {
 }
 
 const POSTER = {
-  resizeMode: 'contain',
-  width: 100,
+  width: Dimensions.get('window').width * .255,
   height: 150,
   margin: 5,
+}
+
+const ITEMCONTAINER = {
+  width: Dimensions.get('window').width * .6,
+
+  flexDirection: 'row',
 }
 
 const SIZES = {
@@ -95,12 +103,6 @@ const SIZES = {
 
 };
 
-
-const ITEMCONTAINER = {
-  width: 250,
-  flexDirection: 'row',
-  justifyContent: 'space-around'
-}
 const FONTS = {
   h1: {
     fontSize: SIZES.h1,

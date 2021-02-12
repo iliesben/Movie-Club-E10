@@ -21,7 +21,8 @@ export const MainNavigator = () => {
         options={(props) => ({
           headerStyle: {
             height: 145,
-            borderRadius: 50,
+            borderBottomEndRadius: 50,
+            borderBottomStartRadius: 50,
             backgroundColor: COLORS.primary,
           },
           headerTintColor: COLORS.secondary,
