@@ -36,7 +36,7 @@ const SHADOW = {
 }
 
 const BUTTON = {
-  width: 170,
+  width: Dimensions.get('window').width * .4,
   height: 70,
 }
 
@@ -65,7 +65,6 @@ const POSTER = {
 
 const ITEMCONTAINER = {
   width: Dimensions.get('window').width * .6,
-
   flexDirection: 'row',
 }
 
