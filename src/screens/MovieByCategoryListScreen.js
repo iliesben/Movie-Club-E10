@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react'
-import { View, ActivityIndicator, Text } from 'react-native';
-import { MovieList } from '../components/MovieList'
+import { View } from 'react-native';
+import { LoadIcon } from '../components/Icon/LoadIcon';
+import { MovieList } from '../components/list/MovieList'
 import { getMoviebyCategory } from '../services/GetApi'
 
 export const MovieByCategoryListScreen = (props) => {
@@ -36,11 +37,9 @@ export const MovieByCategoryListScreen = (props) => {
 
   return (
     <View>
-      <MovieList data={movieBycategory} loadMovies={loadFilmsByCategory} totalPages={totalPages} page={page} />
+      <MovieList data={movieBycategory} loadMovies={loadFilmsByCategory} navigation={navigation} totalPages={totalPages} page={page} />
       {isLoading &&
-        <View style={{ bottom: 100 }}>
-          <ActivityIndicator size='large' color={'#000'} />
-        </View>
+        <LoadIcon bottom={50} />
       }
     </View>
   )

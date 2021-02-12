@@ -1,10 +1,11 @@
 import React, { useState, useLayoutEffect } from "react";
-import { SafeAreaView, StyleSheet, ActivityIndicator, View, Text, Image } from "react-native";
-import { HomeLogo } from "../components/HomeLogo";
-import { FilmSearch } from '../components/FilmSearch'
+import { SafeAreaView, StyleSheet, View, Text, Image } from "react-native";
+import { HomeLogo } from "../components/Icon/HomeIcon";
+import { FilmSearch } from '../components/search-page/FilmSearch'
 import { searchMovie } from '../services/GetApi'
-import { MovieList } from '../components/MovieList'
+import { MovieList } from '../components/list/MovieList'
 import { COLORS, FONTS, SIZES, SADIMAGE } from "../styles/style";
+import { LoadIcon } from "../components/Icon/LoadIcon";
 
 export const SearchScreen = (props) => {
 
@@ -17,20 +18,6 @@ export const SearchScreen = (props) => {
 
   const [page, setPage] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
-
-  // useEffect(() => {
-
-  //   return () => {
-
-  //   };
-  // }, [])
-
-  console.log('navigation:', navigation)
-  // useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     title: route && route.params && route.params.category ? `${category}` : 'Catégorie'
-  //   })
-  // })
 
   const handleSearchText = (text) => setSearchText(text)
 
@@ -53,12 +40,8 @@ export const SearchScreen = (props) => {
       (movies.length > 0)
         ?
         <View style={styles.listContiner}>
-          <MovieList data={movies} loadMovies={() => loadMovies(false)} totalPages={totalPages} page={page} />
-          {isLoading &&
-            <View style={{ bottom: 100 }}>
-              <ActivityIndicator size='large' color={'#000'} />
-            </View>
-          }
+          <MovieList data={movies} loadMovies={() => loadMovies(false)} navigation={navigation} totalPages={totalPages} page={page} />
+          {isLoading && <LoadIcon bottom={'50%'} />}
         </View>
         :
         <View style={styles.NoResultcontainer}>
@@ -70,9 +53,6 @@ export const SearchScreen = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <View>
-
-      </View> */}
       <View>
         <HomeLogo />
       </View>
@@ -98,6 +78,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: SIZES.marginTop
+  },
+  listContiner: {
+    flex: 2.4,
   },
   NoResultcontainer: {
     flex: 3,

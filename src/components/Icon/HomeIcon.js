@@ -1,13 +1,13 @@
 import React from 'react'
 import { StyleSheet, Image, View } from 'react-native';
-import { LOGO, COLORS, SIZES } from "../styles/style";
+import { LOGO, COLORS, SIZES } from "../../styles/style";
 
 export const HomeLogo = () => {
   return (
     <View style={styles.container}>
       <Image
         style={LOGO}
-        source={require('../../assets/logo.png')}
+        source={require('../../../assets/logo.png')}
       />
     </View>
   )

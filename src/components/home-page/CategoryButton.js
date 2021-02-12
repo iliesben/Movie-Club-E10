@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { COLORS, FONTS, SIZES, BUTTON, SHADOW } from "../styles/style";
+import { COLORS, FONTS, SIZES, BUTTON, SHADOW } from "../../styles/style";
 
 export const CategoryButton = (props) => {
 

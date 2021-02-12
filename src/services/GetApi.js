@@ -30,7 +30,7 @@ export const getMovieDetail = (id) => {
     getApiUrl(
       `/movie/${id}`,
       {
-          language: 'fr-FR'
+        language: 'fr-FR'
       }
     )
   )
@@ -45,6 +45,15 @@ export const searchMovie = (searchText, page) => {
         language: 'fr-FR',
         page: page
       }
+    )
+  )
+}
+
+export const getMovieTrailer = (id) => {
+  return getData(
+    getApiUrl(
+      `/movie/${id}/videos`,
+      {}
     )
   )
 }

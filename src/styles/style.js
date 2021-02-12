@@ -2,7 +2,7 @@ const COLORS = {
 
   primary: '#B00020',
   secondary: '#B5A90F',
-  backgroundColor: '#f4f4f4',
+  backgroundColor: '#F4F4F4',
 
   white: '#fff',
   black: '#000'
@@ -42,17 +42,23 @@ const BUTTONSEARCH = {
   height: 50,
 }
 
+const BUTTONTRAILER = {
+  width: '100%',
+  height: 80,
+  position: 'absolute',
+  bottom: 0,
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderTopRightRadius: 30,
+  borderTopLeftRadius: 30,
+  backgroundColor: COLORS.primary
+}
+
 const POSTER = {
   resizeMode: 'contain',
   width: 100,
   height: 150,
   margin: 5,
-}
-
-const ITEMCONTAINER = {
-  width: 200,
-  justifyContent: 'space-around',
-  flexDirection: 'column'
 }
 
 const SIZES = {
@@ -62,6 +68,7 @@ const SIZES = {
 
   radius: 20,
   borderRadius: 5,
+  borderRadiusContainer: 12,
   borderWidth: 6,
 
   padding: 10,
@@ -81,13 +88,19 @@ const SIZES = {
   h1: 22,
   h2: 20,
   h3: 19,
+  h4: 16,
 
-  bigText: 30,
-  meduimText: 18,
-  smallText: 16,
+  meduimText: 20,
+  smallText: 18,
 
 };
 
+
+const ITEMCONTAINER = {
+  width: 250,
+  flexDirection: 'row',
+  justifyContent: 'space-around'
+}
 const FONTS = {
   h1: {
     fontSize: SIZES.h1,
@@ -101,19 +114,23 @@ const FONTS = {
     fontSize: SIZES.h3,
     fontWeight: '600'
   },
+  h4: {
+    fontSize: SIZES.h4,
+    fontWeight: '500'
+  },
   buttonText: {
-    fontSize: SIZES.meduimText,
+    fontSize: SIZES.smallText,
     fontWeight: '700'
   },
   textInput: {
-    fontSize: SIZES.meduimText,
+    fontSize: SIZES.smallText,
     fontWeight: '500'
   },
-  sText: {
-    fontSize: SIZES.smallText,
-    fontWeight: '300',
+  SynopsisText: {
+    fontSize: SIZES.meduimText,
+    fontWeight: '500',
   }
 };
 
-export { COLORS, SIZES, FONTS, POSTER, ITEMCONTAINER, BUTTON, SHADOW, BUTTONSEARCH, SADIMAGE, LOGO };
+export { COLORS, SIZES, FONTS, POSTER, ITEMCONTAINER, BUTTON, SHADOW, BUTTONSEARCH, BUTTONTRAILER, SADIMAGE, LOGO };
 

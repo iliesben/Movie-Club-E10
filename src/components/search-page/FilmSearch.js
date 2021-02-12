@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, View, TextInput, StyleSheet, Text } from "react-native";
-import { SearchIcon } from './svg/SearchIcon';
-import { COLORS, FONTS, SIZES, BUTTONSEARCH } from "../styles/style";
+import { SearchIcon } from '../Icon/SvgIcon';
+import { COLORS, FONTS, SIZES, BUTTONSEARCH } from "../../styles/style";
 
 export const FilmSearch = (props) => {
 

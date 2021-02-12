@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
-import { CategoryButton } from '../components/CategoryButton'
-import { HomeLogo } from '../components/HomeLogo'
+import { CategoryButton } from '../components/home-page/CategoryButton'
+import { HomeLogo } from '../components/Icon/HomeIcon'
 import { getCategory } from '../services/GetApi'
 import { COLORS } from "../styles/style";
 

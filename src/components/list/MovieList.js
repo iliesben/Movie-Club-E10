@@ -4,7 +4,6 @@ import { FilmItem } from './FilmItem'
 
 export const MovieList = (props) => {
 
-
   const { data, totalPages, page, loadMovies, navigation } = props
 
   return (
@@ -12,7 +11,7 @@ export const MovieList = (props) => {
       <FlatList
         style={{ marginTop: 10 }}
         data={data}
-        renderItem={({ item }) => <FilmItem data={item} navigation={navigation} />}
+        renderItem={({ item }) => <FilmItem movie={item} navigation={navigation} />}
         keyExtractor={item => item.id.toString()}
         onEndReachedThreshold={0.5}
         onEndReached={() => {
