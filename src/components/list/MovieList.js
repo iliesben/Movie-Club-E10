@@ -11,9 +11,9 @@ export const MovieList = (props) => {
       <FlatList
         style={{ marginTop: 10 }}
         data={data}
-        renderItem={({ item }) => <FilmItem movie={item} navigation={navigation} />}
+        renderItem={({ item, index }) => <FilmItem movie={item} navigation={navigation} index={index} />}
         keyExtractor={item => item.id.toString()}
-        onEndReachedThreshold={0.5}
+        onEndReachedThreshold={0.1}
         onEndReached={() => {
           if (page < totalPages) loadMovies(false)
         }}
