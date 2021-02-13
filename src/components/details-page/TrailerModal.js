@@ -19,13 +19,13 @@ export const TrailerButtonIn = (props) => {
   )
 }
 
-export const TrailerButtonOut = (props) => {
+const TrailerButtonOut = (props) => {
   const { visible, modalVisible } = props
 
   return (
     <TouchableOpacity
       style={styles.ToucheableFullScrenn}
-      onPress={(e) => visible(!modalVisible)}
+      onPress={() => visible(!modalVisible)}
     />
   )
 }
@@ -63,13 +63,13 @@ export const ModalView = (props) => {
                 source={{
                   uri: `https://www.youtube.com/embed/${movieVideo[0].key}?=0&autoplay=0&showinfo=0&controls=0`,
                 }}
-                onLoadEnd={e => setLoadImageEnd(false)}
+                onLoadEnd={() => setLoadImageEnd(false)}
               />
               {loadImageEnd && loadImage('40%')}
             </View>
           </>
           :
-          <TouchableOpacity style={styles.TextContainer} onPress={(e) => setModalVisible(!modalVisible)}>
+          <TouchableOpacity style={styles.TextContainer} onPress={() => setModalVisible(!modalVisible)}>
             <Text style={FONTS.h3}>Ce film ne contient pas de trailer</Text>
           </TouchableOpacity>
         }

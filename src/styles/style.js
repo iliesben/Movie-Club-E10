@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dimensions } from 'react-native';
 
 const COLORS = {
@@ -24,7 +23,7 @@ const SADIMAGE = {
 }
 
 const SHADOW = {
-  shadowColor: '#B00020',
+  shadowColor: COLORS.primary,
   shadowOffset: {
     width: 0,
     height: 4,

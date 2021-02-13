@@ -12,23 +12,23 @@ export const getCategory = () => {
   )
 }
 
-export const getMoviebyCategory = (genre, page) => {
+export const getMoviebyCategory = (_genre, _page) => {
   return getData(
     getApiUrl(
       `/discover/movie`,
       {
-        with_genres: genre,
+        with_genres: _genre,
         language: 'fr-FR',
-        page: page
+        page: _page
       }
     )
   )
 }
 
-export const getMovieDetail = (id) => {
+export const getMovieDetail = (_id) => {
   return getData(
     getApiUrl(
-      `/movie/${id}`,
+      `/movie/${_id}`,
       {
         language: 'fr-FR'
       }
@@ -36,23 +36,23 @@ export const getMovieDetail = (id) => {
   )
 }
 
-export const searchMovie = (searchText, page) => {
+export const searchMovie = (_searchText, _page) => {
   return getData(
     getApiUrl(
       `/search/movie`,
       {
-        query: searchText,
+        query: _searchText,
         language: 'fr-FR',
-        page: page
+        page: _page
       }
     )
   )
 }
 
-export const getMovieTrailer = (id) => {
+export const getMovieTrailer = (_id) => {
   return getData(
     getApiUrl(
-      `/movie/${id}/videos`,
+      `/movie/${_id}/videos`,
       {}
     )
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { FadeAnimation, ScaleAnimation } from '../../animations/Animations';
+import { ScaleAnimation } from '../../animations/Animations';
 import { COLORS, FONTS, SIZES, BUTTON, SHADOW } from "../../styles/style";
 
 export const CategoryButton = (props) => {
@@ -18,7 +18,7 @@ export const CategoryButton = (props) => {
 const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
-    color: COLORS.primary,
+    color: COLORS.primary
   },
   TouchableOpacityContainer: {
     justifyContent: 'center',

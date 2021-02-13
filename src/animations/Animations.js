@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { View, Animated, Easing } from "react-native";
+import React, { useEffect, useRef } from 'react'
+import { Animated, Easing } from "react-native";
 
 export const FadeAnimation = (props) => {
 
@@ -74,5 +74,4 @@ export const ScaleAnimation = (props) => {
       {props.children}
     </Animated.View>
   )
-
 }

@@ -1,11 +1,11 @@
 import { API_KEY, API_URL } from "../constants/ApiConstants";
 
-const getQueryString = (queryParams) => {
+const getQueryString = (_queryParams) => {
   let queryString;
 
-  if (typeof queryParams === 'object') {
+  if (typeof _queryParams === 'object') {
 
-    queryString = Object.entries(queryParams)
+    queryString = Object.entries(_queryParams)
       .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
       .join('&')
   }
@@ -14,6 +14,6 @@ const getQueryString = (queryParams) => {
 }
 
 
-const getUrl = (path, queryParams) => `${path}${getQueryString(queryParams)}`
+const getUrl = (_path, _queryParams) => `${_path}${getQueryString(_queryParams)}`
 
-export const getApiUrl = (path, queryParams = {}) => getUrl(`${API_URL}${path}`, { ...queryParams, api_key: API_KEY })
+export const getApiUrl = (_path, _queryParams = {}) => getUrl(`${API_URL}${_path}`, { ..._queryParams, api_key: API_KEY })

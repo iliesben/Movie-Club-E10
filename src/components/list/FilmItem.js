@@ -9,11 +9,8 @@ export const FilmItem = (props) => {
   const { movie, navigation, index } = props
   const [loadImageEnd, setLoadImageEnd] = useState([true])
 
-  let kiki = 0
-  console.log('index:', index)
-
-  const navigateDetail = (id, title) => {
-    navigation.navigate('Details', { movieId: id, movieTitle: title })
+  const navigateDetail = (_id, _title) => {
+    navigation.navigate('Details', { movieId: _id, movieTitle: _title })
   }
 
   const loadImage = (_bottom) => {
@@ -32,7 +29,7 @@ export const FilmItem = (props) => {
                 <Image
                   style={POSTER}
                   source={{ uri: `https://image.tmdb.org/t/p/original${movie.poster_path}` }}
-                  onLoadEnd={e => setLoadImageEnd(false)}
+                  onLoadEnd={() => setLoadImageEnd(false)}
                 />
                 {loadImageEnd && loadImage('40%')}
               </>

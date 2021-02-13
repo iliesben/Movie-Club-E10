@@ -36,7 +36,7 @@ export const MovieByCategoryListScreen = (props) => {
   useEffect(() => { loadFilmsByCategory() }, [])
 
   return (
-    <View>
+    <View >
       <MovieList data={movieBycategory} loadMovies={loadFilmsByCategory} navigation={navigation} totalPages={totalPages} page={page} />
       {isLoading &&
         <LoadIcon bottom={50} />

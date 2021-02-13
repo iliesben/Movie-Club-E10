@@ -8,15 +8,15 @@ export const FilmSearch = (props) => {
   const { handleSearch, handleClickButton } = props
   const [isDisabled, setIsDisabled] = useState(true);
 
-  const onChangeText = (text) => {
-    setIsDisabled(text === '')
-    handleSearch(text);
+  const onChangeText = (_text) => {
+    setIsDisabled(_text === '')
+    handleSearch(_text);
   }
 
   return (
     <View style={styles.inputBox}>
       <View style={styles.inputContainer}>
-        <SearchIcon style={{ marginLeft: 15 }} fill="#b00020" />
+        <SearchIcon style={{ marginLeft: 15 }} fill={COLORS.secondary} />
         <TextInput
           style={[styles.inputText, FONTS.textInput]}
           placeholder='Titre du film'

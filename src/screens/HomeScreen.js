@@ -22,7 +22,7 @@ export const HomeScreen = (props) => {
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.categoryContainer}>
           {
-            category && category.genres && category.genres.length > 0 && category.genres.map((category, index) => <CategoryButton key={index} content={category.name} navigation={() => listNavigate(category.name, category.id)} />)
+            category && category.genres && category.genres.length > 0 && category.genres.map((_category, _index) => <CategoryButton key={_index} content={_category.name} navigation={() => listNavigate(_category.name, _category.id)} />)
           }
         </View>
       </ScrollView>
@@ -35,7 +35,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.backgroundColor
+    backgroundColor: COLORS.backgroundColor,
+    // width: 200000,
+    // borderWidth: 6
   },
   logoContainer: {
     flex: .5,

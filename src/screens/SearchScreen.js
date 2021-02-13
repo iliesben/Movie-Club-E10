@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState } from "react";
 import { SafeAreaView, StyleSheet, View, Text, Image } from "react-native";
 import { HomeLogo } from "../components/Icon/HomeIcon";
 import { FilmSearch } from '../components/search-page/FilmSearch'
@@ -19,18 +19,18 @@ export const SearchScreen = (props) => {
   const [page, setPage] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
 
-  const handleSearchText = (text) => setSearchText(text)
+  const handleSearchText = (_text) => setSearchText(_text)
 
   const searchMovies = () => loadMovies(true)
 
-  const loadMovies = (isNewSearch) => {
+  const loadMovies = (_isNewSearch) => {
     setIsLoading(true)
 
-    searchMovie(searchText, isNewSearch ? 1 : page + 1)
+    searchMovie(searchText, _isNewSearch ? 1 : page + 1)
       .then(data => {
         setPage(data.page);
         setTotalPages(data.total_pages)
-        setMovies(isNewSearch ? data.results : [...movies, ...data.results]);
+        setMovies(_isNewSearch ? data.results : [...movies, ...data.results]);
         setIsLoading(false)
       })
   }
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     flex: 2.4,
   },
   NoResultcontainer: {
+    marginTop: SIZES.marginTop * 2,
     flex: 3,
     alignItems: 'center',
     justifyContent: 'center',

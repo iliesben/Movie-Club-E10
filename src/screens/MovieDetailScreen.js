@@ -19,7 +19,7 @@ export const MovieDetailScreen = (props) => {
         height: 100,
       },
       headerLeft: () => (
-        <TouchableOpacity style={{ marginLeft: 30 }} onPress={() => props.navigation.goBack()}>
+        <TouchableOpacity style={{ marginLeft: 30 }} onPress={() => navigation.goBack()}>
           <BackIcon />
         </TouchableOpacity>
       )

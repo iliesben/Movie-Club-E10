@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import React from 'react'
+import { View, ActivityIndicator } from 'react-native';
 import { COLORS } from '../../styles/style';
 
 export const LoadIcon = (props) => {

@@ -1,12 +1,10 @@
-import React, { useState, Fragment } from 'react'
-import { View, ScrollView, TouchableHighlight, StyleSheet, Text, Image, Dimensions, Alert, Modal, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react'
+import { View, ScrollView, StyleSheet, Text, Image, Dimensions, TouchableHighlight } from 'react-native';
 import { PlayIcon } from '../Icon/SvgIcon';
-import { COLORS, FONTS, SIZES, BUTTONTRAILER } from '../../styles/style';
+import { COLORS, FONTS, SIZES } from '../../styles/style';
 import { ModalView, TrailerButtonIn } from './TrailerModal';
 import { LoadIcon } from '../Icon/LoadIcon';
 
-
-const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
 
 export const DetailContainer = (props) => {
 
@@ -30,7 +28,7 @@ export const DetailContainer = (props) => {
               <Image
                 source={{ uri: `https://image.tmdb.org/t/p/original${movie.backdrop_path}` }}
                 style={styles({}).BackdropImage}
-                onLoadEnd={e => setLoadImageEnd(false)}
+                onLoadEnd={() => setLoadImageEnd(false)}
               />
               {loadImageEnd && loadImage('50%')}
             </>
@@ -43,7 +41,7 @@ export const DetailContainer = (props) => {
                 <Image
                   style={styles({}).moviePosterImage}
                   source={{ uri: `https://image.tmdb.org/t/p/original${movie.poster_path}` }}
-                  onLoadEnd={e => setLoadImageEnd(false)}
+                  onLoadEnd={() => setLoadImageEnd(false)}
                 />
                 {loadImageEnd && loadImage('40%')}
               </>
@@ -52,13 +50,13 @@ export const DetailContainer = (props) => {
           <View style={styles({}).movieCaption}>
             <ScrollView>
               {movie.title !== '' && <Text style={[styles({}).movieTitle, FONTS.h2]}>{movie.title}</Text>}
-              {movie.genres && <Text style={[styles({}).movieSubtitle, FONTS.h4]}>{movie.genres.map(genre => genre.name).join('/')}</Text>}
+              {movie.genres && <Text style={[styles({}).movieSubtitle, FONTS.h4]}>{movie.genres.map(_genre => _genre.name).join('/')}</Text>}
               {movie.runtime > 0 && <Text style={[styles({}).movieSubtitle, FONTS.h4]}>{Math.floor(movie.runtime / 60) + 'h' + (regexMinute.test(movie.runtime % 60) ? movie.runtime % 60 : movie.runtime % 60 + '0')}</Text>}
             </ScrollView>
           </View>
-          <View style={styles({}).playIcon}>
-            <PlayIcon style={{ marginLeft: 5 }} />
-          </View>
+          <TouchableHighlight style={styles({}).playIcon} onPress={() => setModalVisible(true)}>
+            <PlayIcon style={{ marginLeft: SIZES.marginLeft }} />
+          </TouchableHighlight>
         </View>
         <View style={styles({}).detailContainer}>
           <View style={styles({}).synopsisTitleContainer}>
@@ -74,6 +72,8 @@ export const DetailContainer = (props) => {
   )
 }
 
+const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
+
 const styles = (props) => StyleSheet.create({
   centeredView: {
     flex: 1,
@@ -84,12 +84,12 @@ const styles = (props) => StyleSheet.create({
     opacity: props.modalVisible ? 0.3 : 1,
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: COLORS.backgroundColor,
+    backgroundColor: COLORS.backgroundColor
   },
   BackdropImage: {
     height: windowHeight / 2.5,
     width: windowWidth,
-    resizeMode: 'cover',
+    resizeMode: 'cover'
   },
   middleContainer: {
     bottom: windowHeight / 12,
